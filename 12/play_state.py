@@ -8,7 +8,8 @@ from ball import Ball
 
 
 boy = None
-grass = None
+backgrass = None
+frontgrass = None
 
 def handle_events():
     events = get_events()
@@ -23,12 +24,14 @@ def handle_events():
 
 # 초기화
 def enter():
-    global boy, grass
-    boy = Boy()
-    grass = Grass()
+    global boy, backgrass, frontgrass
+    boy = Boy( 400, 45)
+    backgrass = Grass(400, 30)
+    frontgrass = Grass(400, 10)
 
+    game_world.add_object(backgrass, 0)
     game_world.add_object(boy, 1)
-    game_world.add_object(grass, 0)
+    game_world.add_object(frontgrass, 1)
 
 # 종료
 def exit():
