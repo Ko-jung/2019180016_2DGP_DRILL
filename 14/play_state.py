@@ -7,12 +7,13 @@ import game_framework
 import game_world
 
 from boy import Boy
+from ball import Ball
+
 # fill here
-# from background import FixedBackground as Background
-from background import TileBackground as Background
+from background import FixedBackground as Background
+# from background import TileBackground as Background
 
 import server
-
 
 def enter():
     server.boy = Boy()
@@ -20,6 +21,11 @@ def enter():
 
     server.background = Background()
     game_world.add_object(server.background, 0)
+
+    for i in range(100):
+        server.balls.append(Ball())
+    game_world.add_objects(server.balls, 1)
+    game_world.add_collision_pairs(server.boy, server.balls, 'boy:ball')
 
 
 

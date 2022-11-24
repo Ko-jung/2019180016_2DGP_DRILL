@@ -74,7 +74,7 @@ class WalkingState:
     def draw(boy):
         sx, sy = boy.x - server.background.window_left, boy.y - server.background.window_bottom
 
-        boy.font.draw(sx - 40, sy + 40, '(%d, %d)' % (boy.x, boy.y), (255, 255, 0))
+        boy.font.draw(sx - 40, sy + 40, '(%d, %d), %d' % (boy.x, boy.y, boy.ballcount), (255, 255, 0))
 
         if boy.x_velocity > 0:
             boy.image.clip_draw(int(boy.frame) * 100, 100, 100, 100, sx, sy)
@@ -116,6 +116,7 @@ class Boy:
         self.cur_state = WalkingState
         self.cur_state.enter(self, None)
         self.x, self.y = get_canvas_width() // 2, get_canvas_height() // 2
+        self.ballcount = 0
 
 
     def get_bb(self):
@@ -148,4 +149,9 @@ class Boy:
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]
             self.add_event(key_event)
+
+
+    def handle_collision(self, other, group):
+        self.ballcount += 1
+        pass
 
