@@ -46,11 +46,14 @@ class Zombie:
         self.build_behavior_tree()
 
     def __getstate__(self):
-        # fill here
+        state = {'x': self.x, 'y': self.y, 'dir': self.dir,
+                 'name':self.name, 'size': self.size}
+        return state
         pass
 
     def __setstate__(self, state):
-        # fill here
+        self.__init__()
+        self.__dict__.update(state)
         pass
 
     def calculate_current_position(self):
