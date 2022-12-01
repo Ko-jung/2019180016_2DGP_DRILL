@@ -3,7 +3,9 @@ from pico2d import *
 class Ground:
     def __init__(self):
         self.image = load_image('TUK_GROUND.png')
-        # fill here
+        self.bgm = load_music('football.mp3')
+        self.bgm.set_volume(32)
+        self.bgm.repeat_play()
 
     def __getstate__(self):
         state = {}
